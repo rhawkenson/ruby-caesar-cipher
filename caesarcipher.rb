@@ -1,9 +1,9 @@
-
-#create a code for each letter of the alphabet 
-#take in a word and key 
-#split up the word into an array 
-#shift the value of each letter in the array
-#combine the array into a string
+#Subproblems to solve: 
+  #create a code for each letter of the alphabet 
+  #take in a word and key 
+  #split up the word into an array 
+  #shift the value of each letter in the array
+  #combine the array into a string
 
 #split up the word into an array 
 def cipher(word, key)  
@@ -17,15 +17,32 @@ def cipher(word, key)
   word_arr.each do |letter|
     new_arr = []
     if up_alpha.include?(letter)
-      #code here 
+      new_index = up_alpha.index(letter) + key
+      #If the new index exceed 25, rollover to index 0 (for uppercase letters)
+      if new_index > 25
+          new_index = new_index - 26
+          new_arr.push(up_alpha[new_index])
+        else 
+          new_arr.push(up_alpha[new_index])
+        end
+
     elsif down_alpha.include?(letter)
-      #code here 
+      new_index = down_alpha.index(letter) + key
+      #If the new index exceed 25, rollover to index 0   (for lowercase letters)
+      if new_index > 25
+          new_index = new_index - 26
+          new_arr.push(down_alpha[new_index])
+        else 
+          new_arr.push(down_alpha[new_index])
+        end 
     else
       new_arr.push(letter)
     end
-    print new_arr.join('')
-  end 
-end 
+    #combine the array into a string
+    print new_arr.join()
+  end
+  puts ''
+end
 
 #take in a word and key 
 puts "Lets write some code! Not THAT kind of code..."
@@ -35,21 +52,3 @@ word = gets.chomp
 puts "Enter the key you would like to use to change the code (1-25):"
 key = gets.chomp.to_i
 cipher(word, key)
-
-
-  # word_arr.each do |letter|
-  #   new_arr = []
-  #   if up_alpha.include?(letter)
-  #     #code here 
-  #   elsif down_alpha.include?(letter)
-  #     #code here 
-  #   else
-  #     new_arr.push(letter)
-  #   end
-  #   new_arr
-  # end
-
-
-
-
-#combine the array into a string
